@@ -55,9 +55,10 @@ export type CommitAdditionInput = {
 };
 
 export type FetchHeadOidInput = {
+  "contents"?: unknown;  
   "repository"?: string; 
   "owner"?: string;   
- };
+};
 
 export type CommitAddition = {
   data: {
@@ -105,7 +106,7 @@ target: ;
 errors: Array<GraphQLError>;
 };
 
-export function fetchFetchHeadOid(
+export function fetchHeadOid(
   variables: FetchHeadOidInput,
   options?: NetlifyGraphFunctionOptions
 ): Promise<FetchHeadOid>;

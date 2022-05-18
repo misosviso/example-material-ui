@@ -8,10 +8,10 @@ export const fetchHeadOid = async function(event, repo, name) {
   };
 
   const accessToken = event.authlifyToken;
-  const {errors, data} = await NetlifyGraph.fetchFetchHeadOid(input, {accessToken: accessToken})
+  const {errors, data} = await NetlifyGraph.fetchHeadOid(input, {accessToken: accessToken})
 
   console.log(accessToken)
-  console.log(NetlifyGraph.fetchFetchHeadOid)
+  console.log(NetlifyGraph.fetchHeadOid)
 
   return {errors: errors, data: data}
 }

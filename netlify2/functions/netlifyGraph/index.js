@@ -206,7 +206,7 @@ exports.executeCommitAddition  = (
 }
 
 
-exports.fetchFetchHeadOid = (
+exports.fetchHeadOid = (
       variables,
       options
     ) => {
@@ -230,7 +230,7 @@ const functions = {
   /**
   * An empty query to start from
   */
-  fetchFetchHeadOid: exports.fetchFetchHeadOid
+  fetchHeadOid: exports.fetchHeadOid
 }
 
 exports.default = functions

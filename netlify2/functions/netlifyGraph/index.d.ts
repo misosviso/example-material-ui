@@ -100,7 +100,7 @@ target: ;
 errors: Array<GraphQLError>;
 };
 
-export function fetchFetchHeadOid(
+export function fetchHeadOid(
   variables: Record<string, never>,
   options?: NetlifyGraphFunctionOptions
 ): Promise<FetchHeadOid>;

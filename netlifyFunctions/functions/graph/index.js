@@ -218,7 +218,7 @@ exports.fetchHeadOid = (
 
 const functions = {
   executeCommitAddition : exports.executeCommitAddition ,
-  fetchFetchHeadOid: exports.fetchHeadOid
+  fetchHeadOid: exports.fetchHeadOid
 }
 
 exports.default = functions
