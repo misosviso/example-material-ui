@@ -1,7 +1,8 @@
 import NetlifyGraph from './graph'
 
-export const fetchHeadOid = async function(accessToken) {
+export const fetchHeadOid = async function(event) {
 
+  const accessToken = event.authlifyToken;
   const {errors, data} = await NetlifyGraph.fetchFetchHeadOid({/* variables */}, {accessToken: accessToken})
 
   // return {
