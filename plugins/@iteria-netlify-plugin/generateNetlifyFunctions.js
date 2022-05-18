@@ -1,53 +1,10 @@
 const fs = require('fs');
 
-const executeCommitAddition2 = `
-import NetlifyGraph, { CommitAdditionInput } from './netlifyGraph';
-
-export const handler = async function (event, context) {
-  const headOid = event.headers.headoid;
-  const commitMessage = event.headers.commitmessage;
-  const accessToken = event.authlifyToken;
-  const branchName = ${process.env.BRANCH}  
-  const repositoryNameWithOwner = ${process.env.REPOSITORY_URL.toString().replace(
-    'https://github.com/',
-    ''
-  )} 
-  const content = event.headers.content;
-  const path = event.headers.filepath.substring(1);
-
-  const input: CommitAdditionInput = {
-    branchName: branchName,
-    repositoryNameWithOwner: repositoryNameWithOwner,
-    expectedHeadOid: headOid,
-    contents1: content,
-    path: path,
-    headline: commitMessage
-  };
-
-  // @ts-ignore
-  const { errors: ExecuteCommitErrors, data: ExecuteCommitData } =
-    await NetlifyGraph.executeCommitAddition(input, { accessToken });
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({
-      success: true,
-      ExecuteCommitErrors: ExecuteCommitErrors,
-      ExecuteCommitData: ExecuteCommitData
-    }),
-    headers: {
-      'content-type': 'application/json'
-    }
-  };
-};`;
-
 const executeCommitAddition = `
 import { executeCommit } from "../../netlifyFunctions/functions/ExecuteCommitAddition"
 
 export const handler = async function (event, context) {
   
-  console.log("tryin' to execute commit")
-
   let response = await executeCommit(event)
 
   return {
@@ -78,6 +35,30 @@ export const handler = async function(event, context) {
     headers: {"Content-Type": "application/json"}
   }
 }`;
+
+const fetchHeadOid = `import { fetchHeadOid } from "../../netlifyFunctions/functions/GetFetchHeadOid"
+
+export const handler = async function (event, context) {
+  
+  let response = await fetchHeadOid(event)
+
+  // return {
+  //   statusCode: 200,
+  //   body: JSON.stringify({
+  //     success: true,
+  //     ExecuteCommitErrors: response.errors,
+  //     ExecuteCommitData: response.data
+  //   }),
+  //   headers: {
+  //     'content-type': 'application/json'
+  //   }
+  // }
+  return {
+    statusCode: response.errors ? 500 : 200,
+    body: JSON.stringify(response.errors || response.data),
+    headers: {"Content-Type": "application/json"}
+  }
+}`
 
 const indexJs = `// GENERATED VIA NETLIFY AUTOMATED DEV TOOLS, EDIT WITH CAUTION!
 const buffer = require("buffer")
