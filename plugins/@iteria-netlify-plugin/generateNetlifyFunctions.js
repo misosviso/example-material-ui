@@ -41,6 +41,7 @@ const fetchHeadOid = `import { fetchHeadOid } from "../../netlifyFunctions/funct
 export const handler = async function (event, context) {
   
   let response = await fetchHeadOid(event)
+  console.log(response)
 
   return {
     statusCode: response.errors ? 500 : 200,
