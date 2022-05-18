@@ -1,15 +1,14 @@
-import NetlifyGraph from './graph'
+import NetlifyGraph, { FetchHeadOidInput } from './graph';
 
 export const fetchHeadOid = async function(event) {
 
-  const accessToken = event.authlifyToken;
-  const {errors, data} = await NetlifyGraph.fetchFetchHeadOid({/* variables */}, {accessToken: accessToken})
+  const input: FetchHeadOidInput = {
+    repository: ' example-material-ui',
+    owner: 'misosviso'
+  };
 
-  // return {
-  //   statusCode: errors ? 500 : 200,
-  //   body: JSON.stringify(errors || data),
-  //   headers: {"Content-Type": "application/json"}
-  // }
+  const accessToken = event.authlifyToken;
+  const {errors, data} = await NetlifyGraph.fetchFetchHeadOid(input, {accessToken: accessToken})
 
   return {errors: errors, data: data}
 }
