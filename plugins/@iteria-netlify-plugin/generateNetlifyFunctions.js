@@ -42,17 +42,6 @@ export const handler = async function (event, context) {
   
   let response = await fetchHeadOid(event)
 
-  // return {
-  //   statusCode: 200,
-  //   body: JSON.stringify({
-  //     success: true,
-  //     ExecuteCommitErrors: response.errors,
-  //     ExecuteCommitData: response.data
-  //   }),
-  //   headers: {
-  //     'content-type': 'application/json'
-  //   }
-  // }
   return {
     statusCode: response.errors ? 500 : 200,
     body: JSON.stringify(response.errors || response.data),
@@ -334,7 +323,7 @@ exports.generateNetlifyFunctions = () => {
 
       fs.writeFileSync(
         './netlify/functions/GetFetchHeadOid.ts',
-        getFetchHeadOid
+        fetchHeadOid
       );
 
       fs.writeFileSync(
