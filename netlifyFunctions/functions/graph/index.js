@@ -205,7 +205,6 @@ exports.executeCommitAddition  = (
       });
 }
 
-
 exports.fetchFetchHeadOid = (
       variables,
       options
