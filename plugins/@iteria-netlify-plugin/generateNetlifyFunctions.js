@@ -13,7 +13,7 @@ exports.generateNetlifyFunctions = () => {
 
   export const handler = async function (event, context) {
     
-    let response = await executeCommit(event, ${branch}, ${repoNameWithOwner})
+    let response = await executeCommit(event, "${branch}", "${repoNameWithOwner}")
 
     return {
       statusCode: 200,
@@ -32,7 +32,7 @@ exports.generateNetlifyFunctions = () => {
 
   export const handler = async function (event, context) {
     
-    let response = await fetchHeadOid(event, ${repoName}, ${owner})
+    let response = await fetchHeadOid(event, "${repoName}", "${owner}")
     console.log(response)
 
     return {
