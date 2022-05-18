@@ -47,8 +47,8 @@ import { executeCommit } from "../../netlifyFunctions/functions/ExecuteCommitAdd
 export const handler = async function (event, context) {
   
   console.log("tryin' to execute commit")
-  console.log(process.env.BRANCH)
-  console.log(process.env.REPOSITORY_URL?.toString().replace('https://github.com/',''))
+  console.log(${process.env.BRANCH})
+  console.log(${process.env.REPOSITORY_URL?.toString().replace('https://github.com/','')})
 
   let response = await executeCommit(event)
 
