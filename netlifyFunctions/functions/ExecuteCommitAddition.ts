@@ -7,8 +7,8 @@ export const executeCommit = async function(event, branch, repo){
   const accessToken = event.authlifyToken;
   const content = event.headers.content;
   const path = event.headers.filepath.substring(1);
-  const branchName = branch; // 'build-brach';
-  const repositoryNameWithOwner = repo; // 'misosviso/example-material-ui'; //event.headers.repositorynamewithowner
+  const branchName = branch;
+  const repositoryNameWithOwner = repo;
 
   const input: CommitAdditionInput = {
     branchName: branchName,

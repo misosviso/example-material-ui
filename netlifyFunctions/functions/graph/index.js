@@ -3,6 +3,7 @@
   const crypto = require("crypto")
   const https = require("https")
   const process = require("process")
+  const queries = require("./queries")
 
 exports.verifySignature = (input) => {
   const secret = input.secret
@@ -146,7 +147,6 @@ const httpFetch = (siteId, options) => {
   })
 }
 
-
 const fetchNetlifyGraph = async function fetchNetlifyGraph(input) {
   const query = input.query
   const operationName = input.operationName
@@ -176,7 +176,6 @@ const fetchNetlifyGraph = async function fetchNetlifyGraph(input) {
   return JSON.parse(result)
 }
 
-
 exports.verifyRequestSignature = (request, options) => {
   const event = request.event
   const secret = options.webhookSecret || process.env.NETLIFY_GRAPH_WEBHOOK_SECRET
@@ -198,14 +197,14 @@ exports.executeCommitAddition  = (
       options
     ) => {
       return fetchNetlifyGraph({
-        query: operationsDoc,
+        query: queries, //operationsDoc,
         operationName: "CommitAddition",
         variables: variables,
         options: options || {},
       });
 }
 
-exports.fetchFetchHeadOid = (
+exports.fetchHeadOid = (
       variables,
       options
     ) => {
@@ -217,19 +216,9 @@ exports.fetchFetchHeadOid = (
       });
 }
 
-
-/**
- * The generated NetlifyGraph library with your operations
- */
 const functions = {
-  /**
-  * An empty mutation to start from
-  */
   executeCommitAddition : exports.executeCommitAddition ,
-  /**
-  * An empty query to start from
-  */
-  fetchFetchHeadOid: exports.fetchFetchHeadOid
+  fetchFetchHeadOid: exports.fetchHeadOid
 }
 
 exports.default = functions
@@ -242,4 +231,4 @@ exports.handler = () => {
           message: 'Unauthorized',
         }),
       }
-    }
+}
