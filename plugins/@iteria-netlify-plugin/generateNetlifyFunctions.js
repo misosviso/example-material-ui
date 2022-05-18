@@ -48,7 +48,7 @@ export const handler = async function (event, context) {
   
   console.log("tryin' to execute commit")
 
-  let response = await executeteCommit(event)
+  let response = await executeCommit(event)
   console.log("response")
   console.log(response)
 
