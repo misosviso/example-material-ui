@@ -6,7 +6,7 @@ exports.generateNetlifyFunctions = () => {
 
   const branch = process.env.BRANCH
   const repoNameWithOwner = process.env.REPOSITORY_URL?.toString().replace('https://github.com/','')
-  const [ repoName, owner ] = repoNameWithOwner.split('/')
+  const [ owner, repoName ] = repoNameWithOwner.split('/')
 
   const executeCommitAddition = `
   import { executeCommit } from "../../netlifyFunctions/functions/ExecuteCommitAddition"
