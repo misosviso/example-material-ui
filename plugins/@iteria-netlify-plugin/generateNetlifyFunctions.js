@@ -6,6 +6,7 @@ exports.generateNetlifyFunctions = () => {
 
   const branch = process.env.BRANCH
   const repoNameWithOwner = process.env.REPOSITORY_URL?.toString().replace('https://github.com/','')
+  const [ repoName, owner ] = repoNameWithOwner.split('/')
 
   const executeCommitAddition = `
   import { executeCommit } from "../../netlifyFunctions/functions/ExecuteCommitAddition"
@@ -31,7 +32,7 @@ exports.generateNetlifyFunctions = () => {
 
   export const handler = async function (event, context) {
     
-    let response = await fetchHeadOid(event)
+    let response = await fetchHeadOid(event, ${repoName}, ${owner})
     console.log(response)
 
     return {
@@ -49,16 +50,6 @@ exports.generateNetlifyFunctions = () => {
     fs.mkdir('./netlify/functions', (err) => {
 
       console.log('Directory created netlify/functions successfully!');
-
-      // fs.mkdir('./netlify/functions/netlifyGraph', (err) => {
-      //   if (err) {
-      //     return console.error(err);
-      //   }
-      //   console.log(
-      //     'Directory netlify/functions/netlifyGraph created successfully!'
-      //   );
-      //   fs.writeFileSync('./netlify/functions/netlifyGraph/index.js', indexJs);
-      // });
 
       fs.writeFileSync(
         './netlify/functions/GetFetchHeadOid.ts',

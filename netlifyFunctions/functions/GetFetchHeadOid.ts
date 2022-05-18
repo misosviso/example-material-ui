@@ -1,10 +1,10 @@
 import NetlifyGraph, { FetchHeadOidInput } from './graph';
 
-export const fetchHeadOid = async function(event) {
+export const fetchHeadOid = async function(event, repo, name) {
 
   const input: FetchHeadOidInput = {
-    repository: ' example-material-ui',
-    owner: 'misosviso'
+    repository: repo,
+    owner: name
   };
 
   const accessToken = event.authlifyToken;
