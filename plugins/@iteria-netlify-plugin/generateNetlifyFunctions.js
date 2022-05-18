@@ -445,14 +445,6 @@ exports.generateNetlifyFunctions = () => {
     fs.mkdir('./netlify/functions', (err) => {
 
       console.log('Directory created netlify/functions successfully!');
-      fs.writeFileSync(
-        './netlify/functions/ExecuteCommitAddition.ts',
-        executeCommitAddition
-      );
-      fs.writeFileSync(
-        './netlify/functions/GetFetchHeadOid.ts',
-        getFetchHeadOid
-      );
 
       fs.mkdir('./netlify/functions/netlifyGraph', (err) => {
         if (err) {
@@ -462,7 +454,18 @@ exports.generateNetlifyFunctions = () => {
           'Directory netlify/functions/netlifyGraph created successfully!'
         );
         fs.writeFileSync('./netlify/functions/netlifyGraph/index.js', indexJs);
-      });
+    });
+
+      fs.writeFileSync(
+        './netlify/functions/GetFetchHeadOid.ts',
+        getFetchHeadOid
+      );
+
+      fs.writeFileSync(
+        './netlify/functions/ExecuteCommitAddition.ts',
+        executeCommitAddition
+      );
+
     });
   });
 };
