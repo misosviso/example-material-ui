@@ -162,6 +162,8 @@ const fetchNetlifyGraph = async function fetchNetlifyGraph(input) {
     operationName: operationName,
   }
 
+  console.log(query)
+
   const result = await httpFetch(
     siteId,
     {

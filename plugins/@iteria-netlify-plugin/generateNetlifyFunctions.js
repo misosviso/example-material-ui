@@ -12,6 +12,7 @@ exports.generateNetlifyFunctions = () => {
   export const handler = async function (event, context) {
     
     let response = await executeCommit(event, "${branch}", "${repoNameWithOwner}");
+    console.log(response)
     return response;
   }
   `
