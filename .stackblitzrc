@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 {
   "startCommand": "npm run dev"
+=======
+{
+  "startCommand": "npm run dev"
+>>>>>>> e65eb09a7c0fb53ac5afbde27e978b71b784ece9
 }
