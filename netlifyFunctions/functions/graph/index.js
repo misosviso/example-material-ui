@@ -1,9 +1,8 @@
 // GENERATED VIA NETLIFY AUTOMATED DEV TOOLS, EDIT WITH CAUTION!
-  const buffer = require("buffer")
-  const crypto = require("crypto")
-  const https = require("https")
-  const process = require("process")
-  const queries = require("./queries")
+const buffer = require("buffer")
+const crypto = require("crypto")
+const https = require("https")
+const process = require("process")
 
 exports.verifySignature = (input) => {
   const secret = input.secret
@@ -199,7 +198,7 @@ exports.executeCommitAddition  = (
       options
     ) => {
       return fetchNetlifyGraph({
-        query: queries, //operationsDoc,
+        query: operationsDoc,
         operationName: "CommitAddition",
         variables: variables,
         options: options || {},
